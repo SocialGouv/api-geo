@@ -28,7 +28,8 @@ async function buildCommunes() {
         codeDepartement: commune.departement,
         codeRegion: commune.region,
         codesPostaux: commune.codesPostaux || [],
-        population: commune.population
+        population: commune.population,
+        anciensCodes: commune.anciensCodes || []
       }
 
       if (commune.code in communesFeaturesIndex) {
