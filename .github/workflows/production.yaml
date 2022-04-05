@@ -1,0 +1,32 @@
+name: Production
+
+on:
+  push:
+    tags:
+      - v*
+
+concurrency:
+  group: production
+  cancel-in-progress: true
+
+jobs:
+
+  ##############################################################################
+  ## BUILD AND REGISTER DOCKER IMAGE
+  ##############################################################################
+  register:
+    name: Build & Register application
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Get project name
+      run: |
+        echo "project=${GITHUB_REPOSITORY#*/}" >> $GITHUB_ENV
+
+    - name: Use autodevops build and register
+      uses: SocialGouv/actions/autodevops-build-register@v1
+      with:
+        environment: prod
+        imageName: api-geo/app
+        project: api-geo
+        token: ${{ secrets.GITHUB_TOKEN }}
