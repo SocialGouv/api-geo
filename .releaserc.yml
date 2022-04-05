@@ -9,9 +9,8 @@ plugins:
       message: "chore(release): ${nextRelease.version}"
   - "@semantic-release/github"
 branches:
-  - +([0-9])?(.{+([0-9]),x}).x
-  - main
-  - next
+  - name: main
+  - name: next
   - name: beta
     prerelease: true
   - name: alpha
